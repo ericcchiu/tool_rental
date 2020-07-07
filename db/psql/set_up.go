@@ -3,6 +3,8 @@ package psql
 import (
 	"database/sql"
 	"fmt"
+
+	_ "github.com/lib/pq"
 )
 
 func NewPostgresConnection(connection string) (db *sql.DB, err error) {
