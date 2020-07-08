@@ -89,7 +89,3 @@ func (t toolDataStore) Delete(id string) (err error) {
 	fmt.Printf("%v rows deleted", numRows)
 	return err
 }
-
-
-
-

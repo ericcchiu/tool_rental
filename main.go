@@ -28,11 +28,11 @@ func main() {
 	dbname := os.Getenv("DB_NAME")
 	sslmode := os.Getenv("SSL_MODE")
 
-	// fmt.Printf("WHAT IS THIS user: %s \n", host)
-	// fmt.Printf("WHAT IS THIS port: %s \n", port)
-	// fmt.Printf("WHAT IS THIS user: %s \n", user)
-	// fmt.Printf("WHAT IS THIS password: %s \n", password)
-	// fmt.Printf("WHAT IS THIS dbname: %s \n", dbname)
+	fmt.Printf("WHAT IS THIS user: %s \n", host)
+	fmt.Printf("WHAT IS THIS port: %s \n", port)
+	fmt.Printf("WHAT IS THIS user: %s \n", user)
+	fmt.Printf("WHAT IS THIS password: %s \n", password)
+	fmt.Printf("WHAT IS THIS dbname: %s \n", dbname)
 
 	// ------ Create Connection -----------------------
 	connection := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s", user, password, host, port, dbname, sslmode)
@@ -45,7 +45,8 @@ func main() {
 	defer db.Close()
 
 	fmt.Println(toolDataStore)
-	toolDataStore = psql.NewPostgresToolDataStore(db)
+
+	// toolDataStore = psql.NewPostgresToolDataStore(db)
 
 	// toolService := tools.NewToolService(toolDataStore)
 
