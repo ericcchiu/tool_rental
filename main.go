@@ -6,12 +6,12 @@ import (
 	"os"
 
 	"github.com/ericcchiu/tool_rental/db/psql"
+	"github.com/ericcchiu/tool_rental/tools"
 	"github.com/joho/godotenv"
 )
 
 func main() {
-	// var toolDataStore tools.ToolDataStore
-	// NewPostgresToolDataStore
+	var toolDataStore tools.ToolDataStore
 	// ------- Load environmental variables-----------
 	err := godotenv.Load()
 	if err != nil {
@@ -44,9 +44,55 @@ func main() {
 	}
 	defer db.Close()
 
-	// toolDataStore = psql.NewPostgresToolDataStore(db)
+	toolDataStore = psql.NewPostgresToolDataStore(db)
 
-	// toolService := tools.NewToolService(toolDataStore)
+	toolService := tools.NewToolService(toolDataStore)
 
-	// fmt.Println(toolDataStore)
+	/*
+		newTool := tools.Tool{
+			Name:        "Shelf",
+			Description: "Oak hardwood shelf",
+			Price:       300,
+			Quantity:    20,
+		}
+
+		err = toolService.CreateTool(&newTool)
+		if err != nil {
+			fmt.Println("Error while creating:", err)
+		}
+	*/
+	/*
+		foundTool, err := toolService.FindToolByID("fec9e1dc-02d2-4382-ad4b-e4ba07a53eab")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(foundTool)
+	*/
+	/*
+		allTools, err := toolService.FindAllTools()
+		if err != nil {
+			fmt.Println(err)
+		}
+		for _, tool := range allTools {
+			fmt.Println(tool)
+		}
+	*/
+
+	updateTool := tools.Tool{
+		ID:          "fec9e1dc-02d2-4382-ad4b-e4ba07a53eab",
+		Name:        "Hamertech Hammer",
+		Description: "Leading Hammertech recursive hammer technology that strikes itself",
+		Price:       2000,
+		Quantity:    2,
+	}
+
+	err = toolService.Update(&updateTool)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(updateTool)
+
+	defer db.Close()
+
 }

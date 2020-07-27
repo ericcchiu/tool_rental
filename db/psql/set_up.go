@@ -7,6 +7,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// NewPostgresConnection takes in a connection string for PostgreSQL database and returns a connection to the database
 func NewPostgresConnection(connection string) (db *sql.DB, err error) {
 	// Open a database. Prepares the database abstraction for later use.
 	db, err = sql.Open("postgres", connection)
@@ -22,6 +23,5 @@ func NewPostgresConnection(connection string) (db *sql.DB, err error) {
 
 	fmt.Println("Ping successful")
 
-	defer db.Close()
 	return
 }

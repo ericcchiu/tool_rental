@@ -16,3 +16,4 @@
 
 # Environmental variables
 *.env
+env.sh
